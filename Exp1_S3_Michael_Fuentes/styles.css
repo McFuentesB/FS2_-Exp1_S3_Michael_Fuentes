@@ -1,0 +1,138 @@
+/* Estilos generales */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa; /* Fondo claro */
+    margin: 0;
+    padding: 0;
+}
+
+/* Contenedor principal */
+.container {
+    max-width: 800px; /* Aumentar el ancho máximo */
+    margin: auto;
+    padding: 20px;
+    background-color: #ffffff; /* Fondo blanco para los formularios */
+    border-radius: 8px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Estilos de encabezado */
+h2 {
+    color: #343a40; /* Color del texto del título */
+    margin-bottom: 20px;
+    text-align: center; /* Centrar el título */
+}
+
+/* Estilo para grupos de formularios */
+.form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column; /* Alinear verticalmente */
+}
+
+/* Estilo para los controles del formulario */
+.form-control {
+    border: 1px solid #ced4da; /* Borde gris claro */
+    border-radius: 4px;
+    padding: 10px; /* Espaciado interno */
+}
+
+/* Estilo al enfocar un control de formulario */
+.form-control:focus {
+    border-color: #007bff; /* Color de borde azul al hacer foco */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Sombra azul al hacer foco */
+}
+
+/* Estilo para botones */
+.btn {
+    width: 100%;
+    padding: 12px;
+    border-radius: 4px;
+    color: white; /* Texto blanco */
+    font-weight: bold; /* Texto en negrita */
+    cursor: pointer; /* Cambia el cursor al pasar el mouse */
+}
+
+/* Botón primario */
+.btn-primary {
+    background-color: #007bff; /* Color azul para el botón de registro */
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3; /* Color más oscuro al pasar el mouse */
+}
+
+/* Botón secundario */
+.btn-secondary {
+    background-color: #6c757d; /* Color gris para el botón de limpiar */
+    border: none;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268; /* Color más oscuro al pasar el mouse */
+}
+
+/* Estilo de alertas */
+.alert {
+    margin-top: 20px;
+}
+
+/* Centrando el texto */
+.text-center {
+    text-align: center;
+}
+
+/* Estilos responsivos */
+@media (max-width: 576px) { /* Dispositivos pequeños */
+    .container {
+        padding: 15px;
+    }
+
+    .btn {
+        padding: 10px; /* Ajustar tamaño del botón */
+    }
+}
+
+@media (min-width: 576px) and (max-width: 768px) { /* Dispositivos medianos */
+    .container {
+        max-width: 600px; /* Máximo ancho en pantallas medianas */
+    }
+}
+
+@media (min-width: 768px) { /* Dispositivos grandes */
+    .container {
+        max-width: 800px; /* Máximo ancho en pantallas grandes */
+    }
+}
+
+/* Estilos para la barra de navegación */
+.navbar {
+    background-color: #007bff !important; /* Color azul para la barra de navegación */
+}
+
+.navbar a {
+    color: #ffffff !important; /* Color blanco para los enlaces de la barra de navegación */
+}
+
+.navbar a:hover {
+    color: #f8f9fa !important; /* Color blanco claro al pasar el mouse */
+}
+
+.btn-outline-danger {
+    color: #ffffff !important; /* Color blanco para el texto del botón de cerrar sesión */
+    border-color: #ffffff !important; /* Color blanco para el borde del botón */
+}
+
+.btn-outline-danger:hover {
+    background-color: #dc3545 !important; /* Color rojo al pasar el mouse sobre el botón */
+    color: #ffffff !important; /* Mantener el color blanco del texto */
+}
+
+/* Para hacer que el botón no ocupe todo el ancho */
+.navbar .btn {
+    width: auto; /* Cambiar el ancho a automático */
+    margin-left: auto; /* Separar el botón de los enlaces */
+}
+

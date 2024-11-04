@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Recuperar Contraseña</title>
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2 class="text-center">Recuperar Contraseña</h2>
+    
+    <!-- Formulario para recuperar el nombre de usuario -->
+    <form id="recoverForm">
+        <div class="form-group">
+            <label for="recoverInput">Nombre de usuario o Email:</label>
+            <input type="text" class="form-control" id="recoverInput" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Recuperar Contraseña</button>
+    </form>
+
+    <!-- Sección para ingresar nueva contraseña -->
+    <div id="newPasswordSection" class="hidden mt-4">
+        <h3>Establecer Nueva Contraseña</h3>
+        <form id="newPasswordForm">
+            <div class="form-group">
+                <label for="newPassword">Nueva contraseña:</label>
+                <input type="password" class="form-control" id="newPassword" required>
+                <small class="form-text text-muted">
+                    La contraseña debe contener al menos un número, una letra mayúscula y tener entre 6 y 18 caracteres.
+                </small>
+            </div>
+            <button type="submit" class="btn btn-success">Actualizar Contraseña</button>
+        </form>
+    </div>
+    
+    <div id="message" class="mt-3 text-danger font-weight-bold"></div>
+
+    <!-- Botón para volver al login -->
+    <div class="mt-3 text-center">
+        <a href="login.html" class="btn btn-secondary">Volver al Login</a>
+    </div>
+</div>
+
+<script src="script.js"></script>
+<script>
+    document.getElementById('recoverForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const recoverInput = document.getElementById('recoverInput').value;
+        const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+        
+        const usuarioEncontrado = usuarios.find(u => u.usuario === recoverInput || u.email === recoverInput);
+
+        if (usuarioEncontrado) {
+            document.getElementById('newPasswordSection').classList.remove('hidden');
+            document.getElementById('message').innerText = "Usuario encontrado. Por favor, establece una nueva contraseña.";
+        } else {
+            document.getElementById('message').innerText = "Usuario o email no encontrado.";
+        }
+    });
+
+    document.getElementById('newPasswordForm')?.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const newPassword = document.getElementById('newPassword').value;
+        const recoverInput = document.getElementById('recoverInput').value;
+        const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+        
+        const usuarioIndex = usuarios.findIndex(u => u.usuario === recoverInput || u.email === recoverInput);
+
+        // Validaciones de la nueva contraseña
+        if (!/(?=.*[0-9])(?=.*[A-Z])/.test(newPassword) || newPassword.length < 6 || newPassword.length > 18) {
+            document.getElementById('message').innerText = 'La contraseña debe contener al menos un número, una letra mayúscula y tener entre 6 y 18 caracteres.';
+            return;
+        }
+
+        if (usuarioIndex > -1) {
+            usuarios[usuarioIndex].clave = newPassword; // Actualiza la clave
+            localStorage.setItem('usuarios', JSON.stringify(usuarios));
+            document.getElementById('message').innerText = "Contraseña actualizada con éxito.";
+            document.getElementById('newPasswordSection').classList.add('hidden'); // Oculta la sección de nueva contraseña
+            document.getElementById('recoverForm').reset(); // Reinicia el formulario
+            document.getElementById('newPasswordForm').reset(); // Reinicia el formulario de nueva contraseña
+        } else {
+            document.getElementById('message').innerText = "Error al actualizar la contraseña.";
+        }
+    });
+</script>
+</body>
+</html>
